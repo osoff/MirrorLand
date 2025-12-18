@@ -149,5 +149,5 @@ export const footer = {
     { label: "Политика конфиденциальности", href: "/privacy" },
     { label: "Пользовательское соглашение", href: "/terms" },
   ],
-  copyright: `© ${new Date().getFullYear()} MirrorLand`,
+  copyright: `${new Date().getFullYear()} ${brand.name}`,
 };
