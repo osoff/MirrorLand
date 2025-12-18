@@ -6,7 +6,7 @@ export const navLinks = [
   { label: "Features", href: "#features" },
   { label: "How it works", href: "#how" },
   { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Характеристики", href: "#faq" },
 ];
 
 export const headerPoints = [
@@ -15,28 +15,60 @@ export const headerPoints = [
 ];
 
 export const hero = {
-  title: "Build your landing page in days, not weeks.",
-  subtitle:
-    "A tidy React + Tailwind structure with reusable sections, UI primitives, and a layout you can extend.",
-  primaryCta: { label: "Get started", href: "#cta" },
-  secondaryCta: { label: "See pricing", href: "#pricing" },
+  kicker: "Скидка 50% + консультация",
+  title: "Зеркало - бортовой компьютер",
+  subtitle: "+ видеорегистратор",
+  primaryCta: { label: "Оставить заявку", href: "#lead" },
+  secondaryCta: { label: "Смотреть цены", href: "#pricing" },
+  usps: [
+    {
+      icon: "chip",
+      title: "Бортовой компьютер в зеркале",
+      text: "Удобный формат без лишних устройств на панели.",
+    },
+    {
+      icon: "camera",
+      title: "Встроенный видеорегистратор",
+      text: "Безопаснее и аккуратнее в салоне.",
+    },
+
+    {
+      icon: "shieldCheck",
+      title: "Гарантия 3 года",
+      text: "Сервис и поддержка после покупки.",
+    },
+  ],
+  lead: {
+    badge: { icon: "percentBadge", text: "-50%" },
+    title: "Оставьте заявку",
+    subtitle: "Перезвоним и уточним детали заказа и сделаем скидку 50%",
+    nameLabel: "Имя",
+    namePlaceholder: "Иван",
+    phoneLabel: "Телефон",
+    phonePlaceholder: "+7 (___) ___-__-__",
+    submitLabel: "Оформить заказ",
+  },
 };
 
 export const features = [
   {
-    title: "Sections-first architecture",
-    description:
-      "Hero, Features, Pricing, FAQ and more live in `src/sections` so the page stays readable.",
+    title: "Обычный регистратор",
+    points: [
+      "После заполнения памяти нужно самостоятельно удалять файлы и осуществлять перезапись",
+      "Требует ручного включения и отключения",
+      "Очень ограниченный набор функций",
+      "Узкий угол обзора",
+    ],
   },
   {
-    title: "Reusable UI primitives",
-    description:
-      "Buttons, container, headings — small building blocks you can reuse across pages.",
-  },
-  {
-    title: "Data-driven content",
-    description:
-      "Text and lists are centralized in `src/content/landing.js` to avoid JSX clutter.",
+    title: "Fugicar FC8",
+    featured: true,
+    points: [
+      "Когда память заполняется, устройство удаляет наиболее старые материалы для сохранения новых",
+      "Не требует ручного включения и отключения",
+      "Имеет датчик движения, систему «Антисон», радар-детектор и др",
+      "Широкий угол обзора",
+    ],
   },
 ];
 
@@ -102,11 +134,20 @@ export const faqs = [
   },
 ];
 
+export const specs = [
+  { label: "Дисплей", value: '4.0" IPS' },
+  { label: "Разрешение экрана", value: "1280×480" },
+  { label: "Карта памяти", value: "до 512 GB" },
+  { label: "Основная камера", value: "Full HD 1080 px | 170°" },
+  { label: "Разрешение видео", value: "1920×1080 px, 30 fps" },
+  { label: "Микрофон", value: "Встроенный, шумоподавление" },
+  { label: "Циклическая запись", value: "есть" },
+];
+
 export const footer = {
   links: [
-    { label: "Privacy", href: "#" },
-    { label: "Terms", href: "#" },
-    { label: "Contact", href: "#cta" },
+    { label: "Политика конфиденциальности", href: "/privacy" },
+    { label: "Пользовательское соглашение", href: "/terms" },
   ],
   copyright: `© ${new Date().getFullYear()} MirrorLand`,
 };

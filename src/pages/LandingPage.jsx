@@ -4,8 +4,10 @@ import SiteFooter from "../components/layout/SiteFooter.jsx";
 import Hero from "../sections/Hero.jsx";
 import Features from "../sections/Features.jsx";
 import HowItWorks from "../sections/HowItWorks.jsx";
-import Pricing from "../sections/Pricing.jsx";
 import FAQ from "../sections/FAQ.jsx";
+import HowToOrder from "../sections/HowToOrder.jsx";
+import LeadFormSection from "../sections/LeadFormSection.jsx";
+import Reviews from "../sections/Reviews.jsx";
 import CTA from "../sections/CTA.jsx";
 
 import {
@@ -14,23 +16,29 @@ import {
   headerPoints,
   hero,
   features,
-  steps,
-  pricingTiers,
-  faqs,
+  specs,
   footer,
 } from "../content/landing.js";
 
 export default function LandingPage() {
   const heroData = {
-    kicker: brand.tagline,
+    kicker: hero.kicker,
     title: hero.title,
     subtitle: hero.subtitle,
     primaryCta: hero.primaryCta,
     secondaryCta: hero.secondaryCta,
+    usps: hero.usps,
+    lead: hero.lead,
     stats: [
-      { value: "Vite", label: "Fast dev & builds" },
-      { value: "React", label: "Component-first UI" },
-      { value: "Tailwind", label: "Utility styling" },
+      {
+        value: "Уникальная технология",
+        label: "С использованием камеры регистратора в дневное и ночное время",
+      },
+      {
+        value: "Постоянно в сети",
+        label: "Регистратор работает даже когда вы спите",
+      },
+      { value: "Простая установка", label: "На любую марку автомобиля" },
     ],
   };
 
@@ -45,10 +53,12 @@ export default function LandingPage() {
       <main>
         <Hero data={heroData} />
         <Features items={features} />
-        <HowItWorks steps={steps} />
-        <Pricing tiers={pricingTiers} />
-        <FAQ items={faqs} />
-        <CTA brandName={brand.name} />
+        <HowItWorks />
+        <FAQ specs={specs} />
+        <HowToOrder />
+        <LeadFormSection />
+
+        <Reviews />
       </main>
 
       <SiteFooter links={footer.links} copyright={footer.copyright} />
