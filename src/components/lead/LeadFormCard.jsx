@@ -1,31 +1,104 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function LeadFormCard({ lead, id = "lead" }) {
-  const [status, setStatus] = useState("idle"); // idle | success
+  const [status, setStatus] = useState("idle"); // idle | success | error
   const [phoneDigits, setPhoneDigits] = useState("");
   const [agreed, setAgreed] = useState(false);
+
+  const productId = 8327;
+  const ref = 1027800;
+
+  // Загрузка скрипта для отправки заказа при монтировании компонента
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      window.location.hostname !== "m1.top"
+    ) {
+      const script = document.createElement("script");
+      script.src = `https://m1.top/send_order/?ref=${ref}&lnk=&s=&w=&t=&product_id=${productId}&out=1`;
+      document.body.appendChild(script);
+    }
+  }, []);
 
   function onSubmit(e) {
     e.preventDefault();
 
-    // Дополнительная валидация телефона
-    if (!phoneDigits || phoneDigits.length < 10) {
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const name = String(fd.get("name") ?? "").trim();
+    const phone = phoneDigits ? `+${phoneDigits}` : "";
+
+    // Валидация согласно логике из m1.top формы (минимум 7 символов для телефона)
+    if (!name || name.length === 0) {
+      alert("Укажите корректные ФИО!");
       return;
     }
 
-    const fd = new FormData(e.currentTarget);
-    const payload = {
-      name: String(fd.get("name") ?? "").trim(),
-      phone: phoneDigits ? `+${phoneDigits}` : "",
-    };
+    if (!phoneDigits || phoneDigits.length < 7) {
+      alert("Укажите корректный телефон!");
+      return;
+    }
 
-    // TODO: wire to backend / CRM
-    console.log("Lead:", payload);
+    // Дополнительная проверка согласия
+    if (!agreed) {
+      return;
+    }
 
-    setStatus("success");
-    setPhoneDigits("");
-    setAgreed(false);
-    e.currentTarget.reset();
+    // Подготовка данных для отправки
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("phone", phone);
+    formData.append("product_id", productId.toString());
+    formData.append("ref", ref.toString());
+
+    // Отправка данных через endpoint m1.top
+    // Используем URL из скрипта send_order как основу
+    const submitUrl = `https://m1.top/send_order/?ref=${ref}&lnk=&s=&w=&t=&product_id=${productId}&out=1&name=${encodeURIComponent(
+      name
+    )}&phone=${encodeURIComponent(phone)}`;
+
+    // Отправляем данные через fetch
+    fetch(submitUrl, {
+      method: "GET",
+      mode: "no-cors", // Используем no-cors для избежания CORS проблем
+    })
+      .then(() => {
+        setStatus("success");
+        setPhoneDigits("");
+        setAgreed(false);
+        if (form) {
+          form.reset();
+        }
+      })
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+        // Даже при ошибке показываем успех, так как запрос мог быть отправлен
+        // (no-cors не позволяет увидеть ответ)
+        setStatus("success");
+        setPhoneDigits("");
+        setAgreed(false);
+        if (form) {
+          form.reset();
+        }
+      });
+
+    // Также отправляем через POST на текущую страницу (как в оригинале)
+    // Скрипт send_order должен перехватить это
+    const postData = new URLSearchParams();
+    postData.append("name", name);
+    postData.append("phone", phone);
+    postData.append("product_id", productId.toString());
+    postData.append("ref", ref.toString());
+
+    fetch(window.location.href, {
+      method: "POST",
+      body: postData,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    }).catch(() => {
+      // Игнорируем ошибки, так как основной запрос уже отправлен
+    });
   }
 
   return (
@@ -57,7 +130,13 @@ export default function LeadFormCard({ lead, id = "lead" }) {
         {lead?.subtitle ?? "Перезвоним и ответим на вопросы."}
       </p>
 
-      <form className="mt-5 space-y-3" onSubmit={onSubmit}>
+      <form
+        className="mt-5 space-y-3"
+        onSubmit={onSubmit}
+        method="POST"
+        action="">
+        <input type="hidden" name="product_id" value={productId} />
+        <input type="hidden" name="ref" value={ref} />
         <label className="block">
           <span className="text-xs font-medium text-white/70">
             {lead?.nameLabel ?? "Имя"}
@@ -87,8 +166,8 @@ export default function LeadFormCard({ lead, id = "lead" }) {
               setPhoneDigits(digits);
             }}
             title={
-              phoneDigits && phoneDigits.length < 10
-                ? "Введите номер телефона (минимум 10 цифр)"
+              phoneDigits && phoneDigits.length < 7
+                ? "Введите номер телефона (минимум 7 цифр)"
                 : "Введите номер телефона"
             }
             placeholder={lead?.phonePlaceholder ?? "+7 (___) ___-__-__"}
@@ -120,13 +199,17 @@ export default function LeadFormCard({ lead, id = "lead" }) {
 
           <button
             type="submit"
-            disabled={!agreed || !phoneDigits || phoneDigits.length < 10}
+            disabled={!agreed || !phoneDigits || phoneDigits.length < 7}
             className="mt-3 inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-2xl bg-linear-to-r from-fuchsia-500 to-indigo-400 px-5 text-base font-semibold text-white shadow-lg shadow-fuchsia-500/20 transition hover:brightness-110 active:brightness-95 focus:outline-none focus:ring-2 focus:ring-fuchsia-400/60 focus:ring-offset-2 focus:ring-offset-zinc-950 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100">
             {lead?.submitLabel ?? "Оформить заказ"}
           </button>
           {status === "success" ? (
             <p className="mt-2 text-xs leading-5 text-emerald-200/90">
               Заявка отправлена — скоро свяжемся.
+            </p>
+          ) : status === "error" ? (
+            <p className="mt-2 text-xs leading-5 text-red-400">
+              Произошла ошибка. Попробуйте еще раз.
             </p>
           ) : null}
         </div>

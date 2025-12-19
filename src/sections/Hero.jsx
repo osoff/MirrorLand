@@ -68,7 +68,7 @@ export default function Hero({ data }) {
                   src={heroImage}
                   alt=""
                   aria-hidden="true"
-                  className="pointer-events-none absolute -z-10 -left-12 top-[75%] w-[320px] max-w-none -translate-y-1/2 rotate-[-10deg] opacity-70 transform-gpu filter-[drop-shadow(0_28px_80px_rgba(0,0,0,0.6))_drop-shadow(0_0_18px_rgba(255,255,255,0.28))] sm:-left-24 sm:w-[520px] sm:opacity-90 md:-left-36 md:w-[720px] lg:-left-[420px] lg:w-[860px]"
+                  className="pointer-events-none absolute -z-10 right-2 -top-6 sm:top-[75%] w-[320px] max-w-none -translate-y-1/2 rotate-[-10deg] opacity-70 transform-gpu filter-[drop-shadow(0_28px_80px_rgba(0,0,0,0.6))_drop-shadow(0_0_18px_rgba(255,255,255,0.28))] sm:-left-24 sm:w-[520px] sm:opacity-90 md:-left-36 md:w-[720px] lg:-left-[420px] lg:w-[860px]"
                 />
 
                 <div className="relative z-10 w-full max-w-[380px] mx-auto sm:mx-0">
