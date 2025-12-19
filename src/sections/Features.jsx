@@ -71,7 +71,7 @@ export default function Features({ items }) {
         </div>
         <div className="mt-10 flex">
           <Button
-            href="#lead"
+            href="#order-form"
             variant="heroCta"
             size="lg"
             className="mx-auto h-18 w-2xl font-bold">

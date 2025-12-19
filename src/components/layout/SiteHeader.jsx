@@ -46,7 +46,7 @@ export default function SiteHeader({ brandName, navLinks = [], points = [] }) {
         )}
 
         <div className="flex items-center gap-2">
-          <Button href="#lead" size="sm">
+          <Button href="#order-form" size="sm">
             Заказать
           </Button>
         </div>

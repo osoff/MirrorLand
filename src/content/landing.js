@@ -18,7 +18,7 @@ export const hero = {
   kicker: "Скидка 50% + консультация",
   title: "Зеркало - бортовой компьютер",
   subtitle: "+ видеорегистратор",
-  primaryCta: { label: "Оставить заявку", href: "#lead" },
+  primaryCta: { label: "Оставить заявку", href: "#order-form" },
   secondaryCta: { label: "Смотреть цены", href: "#pricing" },
   usps: [
     {

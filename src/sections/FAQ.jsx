@@ -23,7 +23,7 @@ export default function FAQ({ specs = [] }) {
             />
             <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-4">
               <Button
-                href="#lead"
+                href="#order-form"
                 variant="heroCta"
                 size="lg"
                 className="w-full sm:w-auto font-bold">

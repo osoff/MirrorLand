@@ -49,7 +49,7 @@ export default function HowToOrder() {
                     </p>
                     {step.hasButton && (
                       <div className="mt-4">
-                        <Button href="#lead" variant="heroCta" size="lg" className="w-full sm:w-auto">
+                        <Button href="#order-form" variant="heroCta" size="lg" className="w-full sm:w-auto">
                           Заказать со скидкой
                         </Button>
                       </div>
