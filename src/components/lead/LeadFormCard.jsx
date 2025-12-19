@@ -7,6 +7,12 @@ export default function LeadFormCard({ lead, id = "lead" }) {
 
   function onSubmit(e) {
     e.preventDefault();
+
+    // Дополнительная валидация телефона
+    if (!phoneDigits || phoneDigits.length < 10) {
+      return;
+    }
+
     const fd = new FormData(e.currentTarget);
     const payload = {
       name: String(fd.get("name") ?? "").trim(),
@@ -18,6 +24,7 @@ export default function LeadFormCard({ lead, id = "lead" }) {
 
     setStatus("success");
     setPhoneDigits("");
+    setAgreed(false);
     e.currentTarget.reset();
   }
 
@@ -79,8 +86,11 @@ export default function LeadFormCard({ lead, id = "lead" }) {
               const digits = e.target.value.replace(/\D/g, "");
               setPhoneDigits(digits);
             }}
-            pattern="\\+\\d+"
-            title="Введите номер в формате + и далее только цифры"
+            title={
+              phoneDigits && phoneDigits.length < 10
+                ? "Введите номер телефона (минимум 10 цифр)"
+                : "Введите номер телефона"
+            }
             placeholder={lead?.phonePlaceholder ?? "+7 (___) ___-__-__"}
             className="mt-1 h-12 w-full rounded-2xl border border-white/15 bg-zinc-950/50 px-4 text-sm text-white placeholder:text-white/40 outline-none focus:border-fuchsia-400/50 focus:ring-4 focus:ring-fuchsia-400/20"
           />
@@ -110,7 +120,7 @@ export default function LeadFormCard({ lead, id = "lead" }) {
 
           <button
             type="submit"
-            disabled={!agreed}
+            disabled={!agreed || !phoneDigits || phoneDigits.length < 10}
             className="mt-3 inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-2xl bg-linear-to-r from-fuchsia-500 to-indigo-400 px-5 text-base font-semibold text-white shadow-lg shadow-fuchsia-500/20 transition hover:brightness-110 active:brightness-95 focus:outline-none focus:ring-2 focus:ring-fuchsia-400/60 focus:ring-offset-2 focus:ring-offset-zinc-950 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100">
             {lead?.submitLabel ?? "Оформить заказ"}
           </button>
