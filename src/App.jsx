@@ -1,19 +1,23 @@
+import { Navigate, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import TermsOfService from "./pages/TermsOfService.jsx";
 
 export default function App() {
-  const path = window.location.pathname;
-  const isPrivacyPage = path === "/privacy" || path === "/privacy.html";
-  const isTermsPage = path === "/terms" || path === "/terms.html";
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
 
-  if (isPrivacyPage) {
-    return <PrivacyPolicy />;
-  }
+      <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route
+        path="/privacy.html"
+        element={<Navigate to="/privacy" replace />}
+      />
 
-  if (isTermsPage) {
-    return <TermsOfService />;
-  }
+      <Route path="/terms" element={<TermsOfService />} />
+      <Route path="/terms.html" element={<Navigate to="/terms" replace />} />
 
-  return <LandingPage />;
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
 }

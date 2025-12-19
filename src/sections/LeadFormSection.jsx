@@ -7,7 +7,6 @@ import { hero, brand } from "../content/landing.js";
 export default function LeadFormSection() {
   return (
     <section
-      id="order-form"
       className="relative overflow-hidden border-t border-white/10">
       <div
         aria-hidden="true"
@@ -81,7 +80,7 @@ export default function LeadFormSection() {
 
           {/* Правая часть - форма */}
           <div className="relative z-20">
-            <LeadFormCard lead={hero.lead} id="lead-form" />
+            <LeadFormCard lead={hero.lead} id="order-form" />
           </div>
         </div>
       </Container>

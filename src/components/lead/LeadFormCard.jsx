@@ -104,7 +104,7 @@ export default function LeadFormCard({ lead, id = "lead" }) {
   return (
     <div
       id={id}
-      className="relative rounded-3xl border border-fuchsia-400/20 bg-zinc-950/35 p-7 shadow-[0_0_0_1px_rgba(255,255,255,0.06)] shadow-fuchsia-500/10 backdrop-blur-md">
+      className="relative rounded-3xl border border-fuchsia-400/20 bg-zinc-950/35 p-7 shadow-[0_0_0_1px_rgba(255,255,255,0.06)] shadow-fuchsia-500/10 backdrop-blur-md scroll-mt-[72px]">
       <div className="absolute -top-8 -right-8 sm:-top-10 sm:-right-10 z-20">
         <div className="relative grid h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 place-items-center">
           <div
