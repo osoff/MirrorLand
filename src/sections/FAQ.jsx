@@ -7,34 +7,36 @@ export default function FAQ({ specs = [] }) {
   return (
     <section id="faq" className="border-t border-white/10">
       <Container className="py-16 sm:py-20">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
           <SectionHeading
             title="Характеристики Fugicar FC8"
             subtitle="Основные параметры устройства."
           />
         </div>
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:items-start">
-          <div className="relative flex flex-col justify-between h-full">
+        <div className="mt-10 grid gap-6 sm:gap-8 lg:grid-cols-2 lg:items-start">
+          <div className="relative flex flex-col justify-between gap-6">
             <img
               src={productImage}
               alt="Fugicar FC8"
-              className="w-full h-auto rounded-3xl object-contain"
+              className="w-full h-auto rounded-3xl object-contain max-w-[400px] mx-auto lg:max-w-none"
             />
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-4">
               <Button
                 href="#lead"
                 variant="heroCta"
                 size="lg"
-                className=" w-xs font-bold">
+                className="w-full sm:w-auto font-bold">
                 Заказать со скидкой
               </Button>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 items-center sm:items-start">
                 <div className="flex items-baseline gap-2">
                   <span className="text-lg text-white/50 line-through">
                     4780₽
                   </span>
-                  <span className="text-3xl font-bold text-white">2390₽</span>
+                  <span className="text-2xl sm:text-3xl font-bold text-white">
+                    2390₽
+                  </span>
                 </div>
                 <span className="text-sm text-white/70">Скидка 50%</span>
               </div>
@@ -58,11 +60,11 @@ export default function FAQ({ specs = [] }) {
               {specs.map((s) => (
                 <div
                   key={s.label}
-                  className="grid gap-2 px-6 py-5 sm:grid-cols-2 sm:items-center sm:gap-6 sm:px-8">
-                  <dt className="text-sm font-medium text-white/70">
+                  className="grid gap-2 px-4 py-4 sm:px-8 sm:py-5 sm:grid-cols-2 sm:items-center sm:gap-6">
+                  <dt className="text-xs sm:text-sm font-medium text-white/70">
                     {s.label}
                   </dt>
-                  <dd className="text-sm font-semibold text-white">
+                  <dd className="text-xs sm:text-sm font-semibold text-white">
                     {s.value}
                   </dd>
                 </div>

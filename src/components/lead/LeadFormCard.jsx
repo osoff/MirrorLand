@@ -25,8 +25,8 @@ export default function LeadFormCard({ lead, id = "lead" }) {
     <div
       id={id}
       className="relative rounded-3xl border border-fuchsia-400/20 bg-zinc-950/35 p-7 shadow-[0_0_0_1px_rgba(255,255,255,0.06)] shadow-fuchsia-500/10 backdrop-blur-md">
-      <div className="absolute -top-10 -right-10 z-20">
-        <div className="relative grid h-28 w-28 place-items-center sm:h-32 sm:w-32">
+      <div className="absolute -top-8 -right-8 sm:-top-10 sm:-right-10 z-20">
+        <div className="relative grid h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 place-items-center">
           <div
             aria-hidden="true"
             className="absolute inset-0 bg-linear-to-br from-fuchsia-500 to-indigo-400 shadow-2xl shadow-fuchsia-500/30 [clip-path:polygon(50%_0%,60%_8%,72%_4%,76%_16%,88%_14%,86%_26%,96%_34%,86%_42%,92%_54%,80%_56%,82%_70%,70%_66%,66%_80%,54%_72%,50%_92%,46%_72%,34%_80%,30%_66%,18%_70%,20%_56%,8%_54%,14%_42%,4%_34%,14%_26%,12%_14%,24%_16%,28%_4%,40%_8%)]"
@@ -43,10 +43,10 @@ export default function LeadFormCard({ lead, id = "lead" }) {
         </div>
       </div>
 
-      <h3 className="text-3xl font-semibold tracking-tight text-white">
+      <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
         {lead?.title ?? "Оставьте заявку"}
       </h3>
-      <p className="mt-1 text-sm text-white/70">
+      <p className="mt-1 text-xs sm:text-sm text-white/70">
         {lead?.subtitle ?? "Перезвоним и ответим на вопросы."}
       </p>
 
