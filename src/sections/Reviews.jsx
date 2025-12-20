@@ -1,46 +1,52 @@
 import Container from "../components/layout/Container.jsx";
 import SectionHeading from "../components/ui/SectionHeading.jsx";
+import avatar1 from "../assets/reviews/avatar1.jpg";
+import avatar2 from "../assets/reviews/avatar2.jpg";
+import avatar3 from "../assets/reviews/avatar3.jpg";
+import avatar4 from "../assets/reviews/avatar4.jpg";
+import avatar5 from "../assets/reviews/avatar5.jpg";
+import avatar6 from "../assets/reviews/avatar6.jpg";
 
 export default function Reviews() {
   const reviews = [
     {
       name: "Александр М.",
-      avatar: "https://i.pravatar.cc/150?img=12",
+      avatar: avatar1,
       rating: 5,
       text: "Отличное устройство! Установил месяц назад, работает без нареканий. Качество записи отличное, особенно ночью. Очень доволен покупкой.",
       date: "2 недели назад",
     },
     {
       name: "Мария К.",
-      avatar: "https://i.pravatar.cc/150?img=47",
+      avatar: avatar2,
       rating: 5,
       text: "Покупкой очень довольна. Ультратонкий корпус выглядит стильно, не занимает много места. Функционал богатый, все работает как часы.",
       date: "3 недели назад",
     },
     {
       name: "Дмитрий В.",
-      avatar: "https://i.pravatar.cc/150?img=33",
+      avatar: avatar3,
       rating: 5,
       text: "Лучший регистратор из всех, что у меня были. Автоматическая запись, широкий угол обзора, качественная картинка. Рекомендую!",
       date: "1 месяц назад",
     },
     {
       name: "Елена С.",
-      avatar: "https://i.pravatar.cc/150?img=45",
+      avatar: avatar4,
       rating: 5,
       text: "Установила на свой автомобиль, очень удобно. Не нужно ничего включать-выключать, все работает автоматически. Качество на высоте.",
       date: "1 месяц назад",
     },
     {
       name: "Игорь П.",
-      avatar: "https://i.pravatar.cc/150?img=68",
+      avatar: avatar5,
       rating: 5,
       text: "Отличное соотношение цена-качество. Много функций, которые действительно нужны. Доставка быстрая, установка простая.",
       date: "2 месяца назад",
     },
     {
       name: "Ольга Н.",
-      avatar: "https://i.pravatar.cc/150?img=32",
+      avatar: avatar6,
       rating: 5,
       text: "Пользуюсь уже два месяца, все отлично. Качество записи превосходное, особенно в темное время суток. Очень рекомендую к покупке.",
       date: "2 месяца назад",
