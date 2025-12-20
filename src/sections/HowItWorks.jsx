@@ -17,7 +17,7 @@ export default function HowItWorks() {
             <div className="pt-[56.25%]" />
             <iframe
               className="absolute inset-0 h-full w-full"
-              src="https://www.youtube.com/embed/2HpwjHqV0aE?rel=0"
+              src="https://rutube.ru/play/embed/b08b58695ce9c4140ddb671b53e23e8d/"
               title="Fugicar — видео"
               loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
